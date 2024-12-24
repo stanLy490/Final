@@ -1,28 +1,3 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using Unity.VisualScripting;
-// using UnityEngine;
-
-// public class Block {
-    // private List<Key> keyList = new List<Key>();
-
-    
-
-//     public void AddNewKey()
-//     {
-        
-//         // GameObject newKeyObject 
-//         // newKeyObject = GameObject.Instantiate() // 通过Assest目录下建一个Resources文件夹，把prefab放在里面，就可以通过名字来生成
-//         Key key;
-//         // KeyComponent  = newKeyObject.GetComponent<Key>()
-//         // KeyComponent.Initiate(this); //this是指正在使用AddNewKey方法的“这个”对象
-
-//         // keyList.Add(KeyComponent);
-//         // list应该做一下根据每个key的time的排序
-//     }
-
-// }
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -33,17 +8,18 @@ using UnityEngine.Video;
 
 public class Block : MonoBehaviour
 {
-
-
+    private float currentTime = 0f; // 当前计时
+    private int currentKeyIndex = 0; // 当前key的索引
     public List<Key> keyList = new List<Key>();
     public GameObject keyPrefab; // 钥匙预制体
     public TimelineDrag timelineDrag;
+ 
+    public bool play;//游戏中的开始模式
 
-
-
-
-
-
+    public void Start()
+    {
+        play = false;
+    }
 
     public void AddNewKey() 
     {
@@ -56,7 +32,7 @@ public class Block : MonoBehaviour
 
 
         Key KeyComponent;
-        KeyComponent  = newKeyObject.GetComponent<Key>();
+        KeyComponent = newKeyObject.GetComponent<Key>();
             if (KeyComponent != null) 
             {
                 KeyComponent.Initiate(this); // 假设Key类有一个Initiate方法接受Block类型的参数
@@ -70,26 +46,89 @@ public class Block : MonoBehaviour
                 Debug.LogError("Key component not found on the prefab.");
             }
         }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && !play)
         {
             // TimeLine.Instance.CalculateXDistance();//这是外部计算两个物体之间x轴距离的函数
             AddNewKey();//触发创建列表 
             // TimelineDrag.Instance.CalculateMouseXDistance();
         }
+        if(play)
+        {
+            currentTime += Time.deltaTime;
+            UpdateObjectPosition();
+            Debug.Log(currentTime);
+        }
     }
 
-       
+    public void PlayMode()//当玩家点击下Play按钮，会根据时间轴上的点位，正式开始游戏
+    {
+        // 排序keyList
+        keyList.Sort((x, y) => x.keyTime.CompareTo(y.keyTime));
+        play = true;
+        currentTime = 0f; // 重置计时器
+        currentKeyIndex = 0; // 重置key索引
+        transform.position = new Vector2( 13.6400003f, 0.189999998f );
+    }
+
+    private void UpdateObjectPosition()
+    {
+        if (currentKeyIndex < keyList.Count)
+        {
+            Key currentKey = keyList[currentKeyIndex];
+            if (currentTime >= currentKey.keyTime)
+            {
+                // 移动物体到blockPos的位置
+                MoveObjectToPosition(currentKey.blockPos);
+                // 移动到下一个key
+                currentKeyIndex++;
+                currentTime = 0f; // 重置计时器
+            }
+            else
+            {
+                // 平滑移动物体
+                MoveObjectSmoothly(currentKey);
+            }
+        }
+    }
+
+    private void MoveObjectToPosition(Vector3 targetPosition)
+    {
+        // 这里假设你有一个物体需要移动，你可以替换成你的实际物体
+        GameObject objectToMove = GameObject.Find("Block");
+        if (objectToMove != null)
+        {
+            objectToMove.transform.position = targetPosition;
+        }
+    }
+
+    private void MoveObjectSmoothly(Key currentKey)
+    {
+        // 这里假设你有一个物体需要平滑移动，你可以替换成你的实际物体
+        GameObject objectToMove = GameObject.Find("Block");
+        if (objectToMove != null)
+        {
+            // 计算插值
+            Vector3 lerpTarget = Vector3.Lerp(objectToMove.transform.position, currentKey.blockPos, (currentTime / currentKey.keyTime));
+            objectToMove.transform.position = lerpTarget;
+        }
+    }
+
+    public void RemoveKey(Key keyToRemove)//和key脚本连接，按下delete键会删除列表里的这个元素
+    {
+        if (keyList.Contains(keyToRemove))
+        {
+            keyList.Remove(keyToRemove);
+        }
+    }
+
+    private void OnMouseDown()//这个脚本和BlockManager相关联，用来管理哪个Block会被激活
+    {
+        if (BlockManager.instance != null)
+        {
+            BlockManager.instance.ActivateBlock(this);
+        }
+    }
 }
-// // 假设的Key类
-// public class Key : MonoBehaviour {
-//     public float Time { get; set; } // 假设每个Key都有一个Time属性
-
-//     public void Initiate(Block block) {
-//         // 初始化Key对象，可能包括设置时间、关联Block等
-//     }
-

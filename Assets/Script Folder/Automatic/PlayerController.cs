@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        isMoveRight = true;
     }
 
     private void Update()
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             isMoveRight = true;
-            Reset();
+            ResetCharacterPos();
             Debug.Log($"Key 'Enter' detected");
         }
         MoveRight();
@@ -34,6 +33,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
         }
         // 使角色朝右边移动
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
         
     }
 
@@ -56,15 +59,26 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // 使角色向上跳跃
-         rb.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);  
+        rb.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);  
     }
 
 
 
-    private void Reset()
+    public void ResetCharacterPos()
     {
-        transform.position = new Vector2(-4.5f, 0.25f);
+        transform.position = new Vector2(-4.5f, 1.0f);
         Debug.Log($"Reset!");
+    }
+
+    public void StopMoving()
+    {
+        isMoveRight = !isMoveRight;
+        Debug.Log(isMoveRight);
+    }
+
+    public void Play()
+    {
+        isMoveRight = true;
     }
 
 

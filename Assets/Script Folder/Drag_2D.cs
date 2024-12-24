@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
-
 public class Drag_2D : MonoBehaviour
+
 {
     [SerializeField] private bool isSelected;
     private Vector2 initialMousePosition;
     private Vector2 initialPositionOffset;
+    // public Rect movementArea; // 定义矩形区域。限制玩家可操作范围
     
-    // [SerializeField] private Transform leftBar;
+
 
     private void Update()
     {
@@ -17,9 +18,10 @@ public class Drag_2D : MonoBehaviour
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
             // 确保z坐标与物体当前的z坐标相同
             worldPos.z = transform.position.z;
-
             // 计算鼠标移动后的新位置
             Vector2 newPosition = (Vector2)Camera.main.ScreenToWorldPoint(screenPos) - initialPositionOffset;
+            // newPosition.x = Mathf.Clamp(newPosition.x, movementArea.xMin, movementArea.xMax);//限制范围
+            // newPosition.y = Mathf.Clamp(newPosition.y, movementArea.yMin, movementArea.yMax);
             transform.position = newPosition;
         }
     }
@@ -42,7 +44,7 @@ public class Drag_2D : MonoBehaviour
         }
     }
 
-       private void OnMouseEnter()
+    private void OnMouseEnter()
     {
         transform.localScale += Vector3.one * 1f;
     }
@@ -51,5 +53,20 @@ public class Drag_2D : MonoBehaviour
     {
         transform.localScale -= Vector3.one * 1f;
     }
-
 }
+
+
+        // 使用Gizmos在Scene视图中绘制movementArea
+    // void OnDrawGizmos()
+    // {
+    //     // Gizmos.color = Color.red;
+    //     // Gizmos.DrawWireCube(transform.position, new Vector3(movementArea.width, movementArea.height, 0));
+
+    //     // Draw a yellow sphere at the transform's position
+    //     // Gizmos.color = Color.yellow;//测试画图功能是否被激活
+    //     // Gizmos.DrawSphere(transform.position, 1);
+    
+    // }
+
+    
+

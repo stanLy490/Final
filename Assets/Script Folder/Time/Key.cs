@@ -12,20 +12,19 @@ public class Key : MonoBehaviour
     private Block myBlock;
     public Vector2 blockPos;
     public float keyTime;//计算当前的时间
+    private TimelineDrag timelineDrag;
 
-
-
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
     private void Start()
     {
         // anim = GetComponent<Animator>();
         originalScale = transform.localScale; // 保存原始大小
     }
 
-
+    private void Awake()
+    {
+        // 获取TimelineDrag和TimeLine的实例
+        timelineDrag = TimelineDrag.Instance;
+    }
 /// <summary>
 /// 
 /// </summary>
@@ -37,22 +36,16 @@ public class Key : MonoBehaviour
         SetTime();
     }
 
-
-
-    public void SetBlockPosition()
+    public void SetBlockPosition()                                                            //需要的数据2
     {
         blockPos = myBlock.transform.position;
     }
 
-
-
-    public void SetTime()
+    public void SetTime()                                                                     //需要的数据1
     {
-        keyTime = TimelineDrag.Instance.xLeftDistance / TimeLine.Instance.maxDistance * TimeLine.Instance.gameTime; //计算打点所对应的时间
+        keyTime = (transform.position.x - timelineDrag.leftTargetObject.position.x) / TimeLine.Instance.maxDistance * TimeLine.Instance.gameTime; //计算打点所对应的时间
         Debug.Log("当前打的关键帧的时间是：" + keyTime);
     }
-
-
 
     void OnMouseEnter()//Mouse有关的代码，是为了删除标记点的一些列方法
     {
@@ -74,8 +67,8 @@ public class Key : MonoBehaviour
         // 检测Delete键是否被按下
         if (canBeDeleted && Input.GetKeyDown(KeyCode.Delete))
         {
+            myBlock.RemoveKey(this);//这一行代码，是把key和block中对应的元素连接起来，否则无法删除list中的元素
             Destroy(gameObject); // 删除物体
         }
     }
-
 }
