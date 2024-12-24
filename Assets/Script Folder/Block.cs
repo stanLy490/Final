@@ -54,9 +54,8 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K) && !play)
+        if (Input.GetKeyDown(KeyCode.K) && !BlockManager.instance.isPlaying)
         {
-            // 检查是否是当前激活的Block
             if (BlockManager.instance.currentActivateBlock == this)
             {
                 AddNewKey();
@@ -66,18 +65,23 @@ public class Block : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             UpdateObjectPosition();
-            Debug.Log(currentTime);
         }
     }
 
-    public void PlayMode()//当玩家点击下Play按钮，会根据时间轴上的点位，正式开始游戏
+    public void StartPlayMode()
     {
-        // 排序keyList
         keyList.Sort((x, y) => x.keyTime.CompareTo(y.keyTime));
         play = true;
-        currentTime = 0f; // 重置计时器
-        currentKeyIndex = 0; // 重置key索引
-        transform.position = new Vector2( 13.6400003f, 0.189999998f );
+        currentTime = 0f;
+        currentKeyIndex = 0;
+        transform.position = new Vector2(13.6400003f, 0.189999998f);
+    }
+
+    public void StopPlayMode()
+    {
+        play = false;
+        currentTime = 0f;
+        currentKeyIndex = 0;
     }
 
     private void UpdateObjectPosition()
@@ -103,24 +107,15 @@ public class Block : MonoBehaviour
 
     private void MoveObjectToPosition(Vector3 targetPosition)
     {
-        // 这里假设你有一个物体需要移动，你可以替换成你的实际物体
-        GameObject objectToMove = GameObject.Find("Block");
-        if (objectToMove != null)
-        {
-            objectToMove.transform.position = targetPosition;
-        }
+        // 直接移动自己
+        transform.position = targetPosition;
     }
 
     private void MoveObjectSmoothly(Key currentKey)
     {
-        // 这里假设你有一个物体需要平滑移动，你可以替换成你的实际物体
-        GameObject objectToMove = GameObject.Find("Block");
-        if (objectToMove != null)
-        {
-            // 计算插值
-            Vector3 lerpTarget = Vector3.Lerp(objectToMove.transform.position, currentKey.blockPos, (currentTime / currentKey.keyTime));
-            objectToMove.transform.position = lerpTarget;
-        }
+        // 直接对自己进行插值移动
+        Vector3 lerpTarget = Vector3.Lerp(transform.position, currentKey.blockPos, (currentTime / currentKey.keyTime));
+        transform.position = lerpTarget;
     }
 
     public void RemoveKey(Key keyToRemove)//和key脚本连接，按下delete键会删除列表里的这个元素

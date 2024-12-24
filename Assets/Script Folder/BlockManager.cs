@@ -6,6 +6,7 @@ public class BlockManager : MonoBehaviour
     public static BlockManager instance; // 单例实例
     public List<Block> blocks = new List<Block>(); // 存储所有Block对象
     public Block currentActivateBlock; // 当前激活的Block
+    public bool isPlaying = false; // 添加播放状态控制
 
     private void Awake()
     {
@@ -35,6 +36,26 @@ public class BlockManager : MonoBehaviour
         if (instance.blocks.Contains(block))
         {
             currentActivateBlock = block;
+        }
+    }
+
+    public void PlayMode()
+    {
+        isPlaying = true;
+        // 对所有Block执行PlayMode
+        foreach (Block block in blocks)
+        {
+            block.StartPlayMode();
+        }
+    }
+
+    public void StopMode()
+    {
+        isPlaying = false;
+        // 停止所有Block的播放
+        foreach (Block block in blocks)
+        {
+            block.StopPlayMode();
         }
     }
 }
