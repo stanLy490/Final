@@ -682,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks: []
   currentActivateBlock: {fileID: 0}
+  isPlaying: 0
 --- !u!4 &227434353
 Transform:
   m_ObjectHideFlags: 0
@@ -914,8 +915,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1554295547}
-        m_TargetAssemblyTypeName: Block, Assembly-CSharp
+      - m_Target: {fileID: 227434352}
+        m_TargetAssemblyTypeName: BlockManager, Assembly-CSharp
         m_MethodName: PlayMode
         m_Mode: 1
         m_Arguments:
@@ -3016,17 +3017,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1609356690229575107, guid: ad0affc716852044388ef4e427efc215, type: 3}
   m_PrefabInstance: {fileID: 7413785950800170884}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1554295547 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7429393726529087206, guid: ad0affc716852044388ef4e427efc215, type: 3}
-  m_PrefabInstance: {fileID: 7413785950800170884}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554295540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3494b0fe59997e24ea2e864458117256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1557252612
 GameObject:
   m_ObjectHideFlags: 0
