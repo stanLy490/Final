@@ -9,15 +9,24 @@ public class Key : MonoBehaviour
     private float scaleFactor = 2f; // 放大的比例
     private bool canBeDeleted = false; // 是否可以被删除的标志
 
-    private Block myBlock;
+    [SerializeField] // 添加这个特性使其在Inspector中可见
+    private Block _parentBlock; // 私有字段
+    public Block parentBlock  // 属性
+    {
+        get => _parentBlock;
+        private set => _parentBlock = value;
+    }
+    
     public Vector2 blockPos;
-    public float keyTime;//计算当前的时间
+    public float keyTime;
     private TimelineDrag timelineDrag;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         // anim = GetComponent<Animator>();
         originalScale = transform.localScale; // 保存原始大小
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Awake()
@@ -31,14 +40,14 @@ public class Key : MonoBehaviour
 /// <param name="blockFromOutSide"></param>
     public void Initiate(Block blockFromOutSide)//我们从Block脚本中的AddNewKey方法中的key.Initiate(this);传进来的
     {
-        myBlock  = blockFromOutSide;//我们把Block这个对象传过来了 
+        parentBlock = blockFromOutSide;  // 记录这个 Key 是由哪个 Block 创建的
         SetBlockPosition();
         SetTime();
     }
 
-    public void SetBlockPosition()                                                            //需要的数据2
+    public void SetBlockPosition()
     {
-        blockPos = myBlock.transform.position;
+        blockPos = parentBlock.transform.position;  // 使用新的变量名
     }
 
     public void SetTime()                                                                     //需要的数据1
@@ -61,14 +70,34 @@ public class Key : MonoBehaviour
         canBeDeleted = false;
     }
 
+    void OnMouseDown()
+    {
+        // 检查是否是当前激活的Block的Key
+        if (BlockManager.instance != null && BlockManager.instance.currentActivateBlock == parentBlock)
+        {
+            // 更新Block的位置到这个Key记录的位置
+            parentBlock.transform.position = blockPos;
+        }
+    }
+
     void Update()
     {
+        // 检查是否是当前激活Block的Key
+        if (BlockManager.instance != null)
+        {
+            bool shouldShow = BlockManager.instance.currentActivateBlock == parentBlock;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = shouldShow;
+            }
+        }
+
         // Debug.Log(canBeDeleted);
         // 检测Delete键是否被按下
         if (canBeDeleted && Input.GetKeyDown(KeyCode.Delete))
         {
-            myBlock.RemoveKey(this);//这一行代码，是把key和block中对应的元素连接起来，否则无法删除list中的元素
-            Destroy(gameObject); // 删除物体
+            parentBlock.RemoveKey(this);  // 使用新的变量名
+            Destroy(gameObject);
         }
     }
 }

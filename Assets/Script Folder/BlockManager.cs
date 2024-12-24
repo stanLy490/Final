@@ -4,7 +4,8 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     public static BlockManager instance; // 单例实例
-    private List<Block> blocks = new List<Block>(); // 存储所有Block对象
+    public List<Block> blocks = new List<Block>(); // 存储所有Block对象
+    public Block currentActivateBlock; // 当前激活的Block
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class BlockManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        currentActivateBlock = null;
     }
 
     public void RegisterBlock(Block block)
@@ -25,7 +27,6 @@ public class BlockManager : MonoBehaviour
         if (!blocks.Contains(block))
         {
             blocks.Add(block);
-            block.gameObject.SetActive(false); // 默认不激活Block
         }
     }
 
@@ -33,15 +34,7 @@ public class BlockManager : MonoBehaviour
     {
         if (instance.blocks.Contains(block))
         {
-            // 停用所有Block
-            foreach (Block b in instance.blocks)
-            {
-                b.gameObject.SetActive(false);
-                b.play = false;
-            }
-            // 激活指定的Block
-            block.gameObject.SetActive(true);
-            block.play = true;
+            currentActivateBlock = block;
         }
     }
 }

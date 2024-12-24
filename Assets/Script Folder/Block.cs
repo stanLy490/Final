@@ -19,6 +19,11 @@ public class Block : MonoBehaviour
     public void Start()
     {
         play = false;
+        // 在Start中注册当前Block到BlockManager
+        if (BlockManager.instance != null)
+        {
+            BlockManager.instance.RegisterBlock(this);
+        }
     }
 
     public void AddNewKey() 
@@ -45,15 +50,17 @@ public class Block : MonoBehaviour
             {
                 Debug.LogError("Key component not found on the prefab.");
             }
-        }
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K) && !play)
         {
-            // TimeLine.Instance.CalculateXDistance();//这是外部计算两个物体之间x轴距离的函数
-            AddNewKey();//触发创建列表 
-            // TimelineDrag.Instance.CalculateMouseXDistance();
+            // 检查是否是当前激活的Block
+            if (BlockManager.instance.currentActivateBlock == this)
+            {
+                AddNewKey();
+            }
         }
         if(play)
         {
@@ -124,7 +131,7 @@ public class Block : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()//这个脚本和BlockManager相关联，用来管理哪个Block会被激活
+    private void OnMouseDown()//这个本和BlockManager相关联，用来管理哪个Block会被激活
     {
         if (BlockManager.instance != null)
         {

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,7 +345,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -681,6 +680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9d532e6c5fbd748ab118529184fe48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blocks: []
+  currentActivateBlock: {fileID: 0}
 --- !u!4 &227434353
 Transform:
   m_ObjectHideFlags: 0
