@@ -119,7 +119,7 @@ public class TimelineDrag : MonoBehaviour
         DistanceJudge = xLeftDistance > 0 && xRightDistance > 0;//如果为正数，则将 DistanceJudge 设置为 true，否则设置为 false
         // Debug.Log(xLeftDistance);
         // 输出到控制台，或者根据需要进行其他操作
-        Debug.Log("The x-axis distance between the mouse and the target object is: " + (xLeftDistance / 26.5f * 15f) );
+        // Debug.Log("The x-axis distance between the mouse and the target object is: " + (xLeftDistance / 26.5f * 15f) );
     }
 
     public void AnimationCheck()//Play / stop按钮会触发这个功能

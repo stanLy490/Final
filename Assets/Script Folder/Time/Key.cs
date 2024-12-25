@@ -50,7 +50,7 @@ public class Key : MonoBehaviour
         blockPos = parentBlock.transform.position;  // 使用新的变量名
     }
 
-    public void SetTime()                                                                     //需要的数据1
+    public void SetTime()//计算每个点所对应的时间,需要获取Timeline和TimelineDrag里面的数据：游戏时长和所打点的位置                                  //需要的数据1
     {
         keyTime = (transform.position.x - timelineDrag.leftTargetObject.position.x) / TimeLine.Instance.maxDistance * TimeLine.Instance.gameTime; //计算打点所对应的时间
         Debug.Log("当前打的关键帧的时间是：" + keyTime);

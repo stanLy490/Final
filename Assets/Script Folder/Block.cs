@@ -64,6 +64,7 @@ public class Block : MonoBehaviour
         if(play)
         {
             currentTime += Time.deltaTime;
+            Debug.Log(currentTime);
             UpdateObjectPosition();
         }
     }
@@ -74,7 +75,7 @@ public class Block : MonoBehaviour
         play = true;
         currentTime = 0f;
         currentKeyIndex = 0;
-        transform.position = new Vector2(13.6400003f, 0.189999998f);
+        // transform.position = new Vector2(13.6400003f, 0.189999998f);
     }
 
     public void StopPlayMode()

@@ -9,19 +9,40 @@ public class Drag_2D : MonoBehaviour
     
 
 
+    public bool moveInXAxis = true;  // true: 只在X轴移动, false: 只在Y轴移动
+    public float minX = -10f;        // X轴最小值
+    public float maxX = 10f;         // X轴最大值
+    public float minY = -5f;         // Y轴最小值
+    public float maxY = 5f;          // Y轴最大值
+
+
+
     private void Update()
     {
         if (isSelected)
         {
             Vector3 screenPos = Input.mousePosition;
-            // Debug.Log(Input.mousePosition.x + "-" +  Input.mousePosition.y);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
             // 确保z坐标与物体当前的z坐标相同
             worldPos.z = transform.position.z;
             // 计算鼠标移动后的新位置
             Vector2 newPosition = (Vector2)Camera.main.ScreenToWorldPoint(screenPos) - initialPositionOffset;
-            // newPosition.x = Mathf.Clamp(newPosition.x, movementArea.xMin, movementArea.xMax);//限制范围
-            // newPosition.y = Mathf.Clamp(newPosition.y, movementArea.yMin, movementArea.yMax);
+
+            if (moveInXAxis)//这段代码，分别实现了对于物体在X轴和Y轴的移动限制
+            {
+                // 只在X轴移动，保持Y轴不变
+                newPosition.y = transform.position.y;
+                // 限制X轴移动范围
+                newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+            }
+            else
+            {
+                // 只在Y轴移动，保持X轴不变
+                newPosition.x = transform.position.x;
+                // 限制Y轴移动范围
+                newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
+            }
+
             transform.position = newPosition;
         }
     }
@@ -53,20 +74,29 @@ public class Drag_2D : MonoBehaviour
     {
         transform.localScale -= Vector3.one * 1f;
     }
+
+
+    private void OnDrawGizmos()//这一部分函数并没有实际功能，它只会在Scene场景里面显示一个区域  
+    {
+        Gizmos.color = Color.yellow;
+        if (moveInXAxis)
+        {
+            // 显示X轴移动范围
+            Gizmos.DrawLine(
+                new Vector3(minX, transform.position.y, 0),
+                new Vector3(maxX, transform.position.y, 0)
+            );
+        }
+        else
+        {
+            // 显示Y轴移动范围
+            Gizmos.DrawLine(
+                new Vector3(transform.position.x, minY, 0),
+                new Vector3(transform.position.x, maxY, 0)
+            );
+        }
+    }
 }
-
-
-        // 使用Gizmos在Scene视图中绘制movementArea
-    // void OnDrawGizmos()
-    // {
-    //     // Gizmos.color = Color.red;
-    //     // Gizmos.DrawWireCube(transform.position, new Vector3(movementArea.width, movementArea.height, 0));
-
-    //     // Draw a yellow sphere at the transform's position
-    //     // Gizmos.color = Color.yellow;//测试画图功能是否被激活
-    //     // Gizmos.DrawSphere(transform.position, 1);
-    
-    // }
 
     
 
