@@ -1,27 +1,43 @@
 ﻿using UnityEngine;
 public class Drag_2D : MonoBehaviour
-
 {
     [SerializeField] private bool isSelected;
     private Vector2 initialMousePosition;
     private Vector2 initialPositionOffset;
-    // public Rect movementArea; // 定义矩形区域。限制玩家可操作范围
     
-
+    public bool moveInXAxis = true;  // true: 只在X轴移动, false: 只在Y轴移动
+    public float minX = -10f;        // X轴最小值
+    public float maxX = 10f;         // X轴最大值
+    public float minY = -5f;         // Y轴最小值
+    public float maxY = 5f;          // Y轴最大值
 
     private void Update()
     {
         if (isSelected)
         {
             Vector3 screenPos = Input.mousePosition;
-            // Debug.Log(Input.mousePosition.x + "-" +  Input.mousePosition.y);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-            // 确保z坐标与物体当前的z坐标相同
             worldPos.z = transform.position.z;
-            // 计算鼠标移动后的新位置
-            Vector2 newPosition = (Vector2)Camera.main.ScreenToWorldPoint(screenPos) - initialPositionOffset;
-            // newPosition.x = Mathf.Clamp(newPosition.x, movementArea.xMin, movementArea.xMax);//限制范围
-            // newPosition.y = Mathf.Clamp(newPosition.y, movementArea.yMin, movementArea.yMax);
+
+            // 计算新位置
+            Vector2 newPosition = (Vector2)worldPos - initialPositionOffset;
+
+            // 根据moveInXAxis决定移动方式
+            if (moveInXAxis)
+            {
+                // 只在X轴移动，保持Y轴不变
+                newPosition.y = transform.position.y;
+                // 限制X轴移动范围
+                newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+            }
+            else
+            {
+                // 只在Y轴移动，保持X轴不变
+                newPosition.x = transform.position.x;
+                // 限制Y轴移动范围
+                newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
+            }
+
             transform.position = newPosition;
         }
     }
@@ -31,9 +47,7 @@ public class Drag_2D : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             isSelected = true;
-            // 记录鼠标点击时的屏幕位置
             initialMousePosition = Input.mousePosition;
-            // 计算物体中心到鼠标点击点的偏移量
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(initialMousePosition);
             initialPositionOffset = new Vector2(worldPoint.x - transform.position.x, worldPoint.y - transform.position.y);
         }
@@ -53,20 +67,26 @@ public class Drag_2D : MonoBehaviour
     {
         transform.localScale -= Vector3.one * 1f;
     }
+
+    // 可选：在Scene视图中显示移动范围
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        if (moveInXAxis)
+        {
+            // 显示X轴移动范围
+            Gizmos.DrawLine(
+                new Vector3(minX, transform.position.y, 0),
+                new Vector3(maxX, transform.position.y, 0)
+            );
+        }
+        else
+        {
+            // 显示Y轴移动范围
+            Gizmos.DrawLine(
+                new Vector3(transform.position.x, minY, 0),
+                new Vector3(transform.position.x, maxY, 0)
+            );
+        }
+    }
 }
-
-
-        // 使用Gizmos在Scene视图中绘制movementArea
-    // void OnDrawGizmos()
-    // {
-    //     // Gizmos.color = Color.red;
-    //     // Gizmos.DrawWireCube(transform.position, new Vector3(movementArea.width, movementArea.height, 0));
-
-    //     // Draw a yellow sphere at the transform's position
-    //     // Gizmos.color = Color.yellow;//测试画图功能是否被激活
-    //     // Gizmos.DrawSphere(transform.position, 1);
-    
-    // }
-
-    
-
