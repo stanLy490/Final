@@ -590,7 +590,6 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 15
   isMoveRight: 0
-  isFreezed: 0
 --- !u!1001 &205633367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1205,9 +1204,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 881986954}
-        m_TargetAssemblyTypeName: TimeIndicator, Assembly-CSharp
-        m_MethodName: ToggleMovement
+      - m_Target: {fileID: 1125727002}
+        m_TargetAssemblyTypeName: TimeLine, Assembly-CSharp
+        m_MethodName: TogglePlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2332,6 +2331,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1707351924}
   endPoint: {fileID: 43495707}
+  maxDistance: 0
+  gameTime: 0
+  currentTime: 0
+  isMoving: 0
+  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &916363369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,6 +2999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19f772656d74f5479da12ec995bb6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeText: {fileID: 0}
   objectA: {fileID: 997815593311005146, guid: e8ab0fb3ab025af4c9fd43e5da677219, type: 3}
   leftBar: {fileID: 1707351924}
   rightBar: {fileID: 43495707}
@@ -3563,9 +3568,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 188386222}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: ResetCharacterPos
+      - m_Target: {fileID: 1125727002}
+        m_TargetAssemblyTypeName: TimeLine, Assembly-CSharp
+        m_MethodName: ResetTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3735,7 +3740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1489678932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3940,8 +3945,8 @@ MonoBehaviour:
   moveInXAxis: 0
   minX: -10
   maxX: 10
-  minY: -5
-  maxY: 5
+  minY: -1.28
+  maxY: 6.75
 --- !u!212 &1554295545
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4818,8 +4823,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   moveInXAxis: 1
-  minX: 8.39
-  maxX: 11.8
+  minX: 6.92
+  maxX: 10.9
   minY: -5
   maxY: 5
 --- !u!61 &1969359494
