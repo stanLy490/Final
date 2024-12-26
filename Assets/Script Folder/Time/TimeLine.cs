@@ -40,7 +40,7 @@ public class TimeLine : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             UpdateTimeDisplay();
-            Debug.Log(currentTime);
+            // Debug.Log(currentTime);//这段代码是调试用的，可以删除。
         }
     }
 

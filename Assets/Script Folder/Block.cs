@@ -8,8 +8,10 @@ using UnityEngine.Video;
 
 public class Block : MonoBehaviour
 {
-    private float currentTime = 0f; // 当前计时
-    private int currentKeyIndex = 0; // 当前key的索引
+    [SerializeField] private float currentTime = 0f; // 当前计时
+    [SerializeField] private int currentKeyIndex = 0; // 当前key的索引
+    private Vector3 previousKeyPosition; // 上一个关键帧的位置
+    private float previousKeyTime = 0f; // 上一个关键帧的时间
     public List<Key> keyList = new List<Key>();
     public GameObject keyPrefab; // 钥匙预制体
     public TimelineDrag timelineDrag;
@@ -40,7 +42,7 @@ public class Block : MonoBehaviour
         KeyComponent = newKeyObject.GetComponent<Key>();
             if (KeyComponent != null) 
             {
-                KeyComponent.Initiate(this); // 假设Key类有一个Initiate方法接受Block类型的参数
+                KeyComponent.Initiate(this); // 假设Key类有一个Initiate法接受Block类型的参数
                 keyList.Add(KeyComponent);
                 // 根据每个key的时间属性对keyList进行排序
                 // keyList.Sort((x, y) => x.Time.CompareTo(y.Time));
@@ -75,7 +77,8 @@ public class Block : MonoBehaviour
         play = true;
         currentTime = 0f;
         currentKeyIndex = 0;
-        // transform.position = new Vector2(13.6400003f, 0.189999998f);
+        previousKeyPosition = keyList.Count > 0 ? keyList[0].blockPos : transform.position;
+        previousKeyTime = 0f;
     }
 
     public void StopPlayMode()
@@ -92,17 +95,21 @@ public class Block : MonoBehaviour
             Key currentKey = keyList[currentKeyIndex];
             if (currentTime >= currentKey.keyTime)
             {
-                // 移动物体到blockPos的位置
-                MoveObjectToPosition(currentKey.blockPos);
+                // 更新前一个关键帧的信息
+                previousKeyPosition = currentKey.blockPos;
+                previousKeyTime = currentKey.keyTime;
                 // 移动到下一个key
                 currentKeyIndex++;
-                currentTime = 0f; // 重置计时器
             }
             else
             {
                 // 平滑移动物体
                 MoveObjectSmoothly(currentKey);
             }
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -114,8 +121,11 @@ public class Block : MonoBehaviour
 
     private void MoveObjectSmoothly(Key currentKey)
     {
-        // 直接对自己进行插值移动
-        Vector3 lerpTarget = Vector3.Lerp(transform.position, currentKey.blockPos, (currentTime / currentKey.keyTime));
+        // 计算当前时间在两个关键帧之间的插值比例
+        float timeRange = currentKey.keyTime - previousKeyTime;
+        float normalizedTime = (currentTime - previousKeyTime) / timeRange;
+        // 在两个关键帧位置之间行插值
+        Vector3 lerpTarget = Vector3.Lerp(previousKeyPosition, currentKey.blockPos, normalizedTime);
         transform.position = lerpTarget;
     }
 

@@ -7,7 +7,7 @@ public class TimeIndicator : MonoBehaviour
     private float maxDistance;    // 从 Timeline 获取的最大距离
     private float gameTime;       // 从 Timeline 获取的总时间
     public float currentTime;    // 当前计时
-    private bool isMoving;        // 是否正在移动
+    public bool isMoving;        // 是否正在移动
     private Vector3 lastPosition; // 记录上次停止时的位置
 
     private void Start()
