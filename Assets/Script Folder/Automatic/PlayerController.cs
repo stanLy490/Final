@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
     // 角色移动速度
     public float moveSpeed = 5f;
     // 跳跃高度
-    public float jumpHeight = 50f;
+    public float jumpHeight = 15f;
     // 死亡时向上跳跃的力度
-    public float deathJumpForce = 50f;
+    public float deathJumpForce = 5f;
     // 刚体组件引用
     private Rigidbody2D rb;
     // 胶囊碰撞体组件引用
