@@ -41,11 +41,21 @@ public class BlockManager : MonoBehaviour
 
     public void PlayMode()
     {
-        isPlaying = true;
-        // 对所有Block执行PlayMode
-        foreach (Block block in blocks)
-        {
-            block.StartPlayMode();
+        isPlaying = !isPlaying;
+        
+        if (isPlaying)
+        {            // 开始播放
+            foreach (Block block in blocks)
+            {
+                block.StartPlayMode();
+            }
+        }
+        else
+        {            // 停止播放
+            foreach (Block block in blocks)
+            {
+                block.PausePlayMode();
+            }
         }
     }
 

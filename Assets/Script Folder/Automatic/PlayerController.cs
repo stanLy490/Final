@@ -75,31 +75,33 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Play()
     {
-        isAlive = true;
-        // 切换冻结状态
-        if (!isFreezed)
+        if(isAlive)
         {
-            // 完全冻结刚体
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            isFreezed = true;
-        }
-        else
-        {
-            // 只冻结旋转
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            isFreezed = false;
-        }
-        isMoveRight = true;
-        
-        // 启用碰撞体
-        if (capsuleCollider != null)
-        {
-            capsuleCollider.enabled = true;
-        }
+            // 切换冻结状态
+            if (!isFreezed)
+            {
+                // 完全冻结刚体
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                isFreezed = true;
+            }
+            else
+            {
+                // 只冻结旋转
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                isFreezed = false;
+            }
+            isMoveRight = true;
+            
+            // 启用碰撞体
+            if (capsuleCollider != null)
+            {
+                capsuleCollider.enabled = true;
+            }
 
-        // 恢复原始体积和旋转
-        // transform.localScale = originalScale;
-        transform.rotation = Quaternion.identity;
+            // 恢复原始体积和旋转
+            // transform.localScale = originalScale;
+            transform.rotation = Quaternion.identity;
+        }
     }
 
     /// <summary>

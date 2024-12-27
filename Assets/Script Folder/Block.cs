@@ -71,21 +71,31 @@ public class Block : MonoBehaviour
         }
     }
 
-    public void StartPlayMode()
+    public void StartPlayMode()//开始/继续游戏时间
     {
         keyList.Sort((x, y) => x.keyTime.CompareTo(y.keyTime));
         play = true;
-        currentTime = 0f;
-        currentKeyIndex = 0;
-        previousKeyPosition = keyList.Count > 0 ? keyList[0].blockPos : transform.position;
-        previousKeyTime = 0f;
+        // 只有在第一次开始时初始化这些值
+        if (currentTime == 0f)
+        {
+            currentKeyIndex = 0;
+            previousKeyPosition = keyList.Count > 0 ? keyList[0].blockPos : transform.position;
+            previousKeyTime = 0f;
+        }
     }
 
-    public void StopPlayMode()
+    public void StopPlayMode()//重置游戏时间
     {
         play = false;
         currentTime = 0f;
         currentKeyIndex = 0;
+    }
+
+    public void PausePlayMode()//暂停游戏时间
+    {
+        // 只需要设置play为false，这样Update中的计时就会暂停
+        // 同时保留currentTime和currentKeyIndex的值
+        play = false;
     }
 
     private void UpdateObjectPosition()
