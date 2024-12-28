@@ -3499,6 +3499,10 @@ PrefabInstance:
       propertyPath: startTextCanvasGroup
       value: 
       objectReference: {fileID: 1746259052}
+    - target: {fileID: 5511631181829159765, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
+      propertyPath: secondTextCanvasGroup
+      value: 
+      objectReference: {fileID: 1746259052}
     - target: {fileID: 8700934186781082896, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
       propertyPath: m_Name
       value: Text Trigger (1)
@@ -4287,8 +4291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   moveInXAxis: 1
-  minX: 26.5
-  maxX: 40.08
+  minX: 1.4
+  maxX: 10.6
   minY: -6.21
   maxY: 6.75
 --- !u!4 &1554295546 stripped
@@ -5543,6 +5547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3936884212346773729, guid: ad0affc716852044388ef4e427efc215, type: 3}
+    - {fileID: 3119816970474622828, guid: ad0affc716852044388ef4e427efc215, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2691164886922630632, guid: ad0affc716852044388ef4e427efc215, type: 3}
     m_AddedGameObjects:
@@ -6224,6 +6229,10 @@ PrefabInstance:
       propertyPath: startTextCanvasGroup
       value: 
       objectReference: {fileID: 62841265}
+    - target: {fileID: 5511631181829159765, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
+      propertyPath: secondTextCanvasGroup
+      value: 
+      objectReference: {fileID: 1746259052}
     - target: {fileID: 8700934186781082896, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
       propertyPath: m_Name
       value: Text Trigger
@@ -6460,11 +6469,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1609356690229575107, guid: ad0affc716852044388ef4e427efc215, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.69
+      value: 6.1
       objectReference: {fileID: 0}
     - target: {fileID: 1609356690229575107, guid: ad0affc716852044388ef4e427efc215, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.25
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1609356690229575107, guid: ad0affc716852044388ef4e427efc215, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6540,6 +6549,7 @@ PrefabInstance:
       objectReference: {fileID: 8911217109887763155, guid: e8ab0fb3ab025af4c9fd43e5da677219, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 3119816970474622828, guid: ad0affc716852044388ef4e427efc215, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1609356690229575107, guid: ad0affc716852044388ef4e427efc215, type: 3}

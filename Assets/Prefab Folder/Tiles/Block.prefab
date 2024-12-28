@@ -140,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1609356690229575107}
   - component: {fileID: 7429393726529087206}
+  - component: {fileID: 3119816970474622828}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -182,6 +183,25 @@ MonoBehaviour:
   keyPrefab: {fileID: 4927666383891961240, guid: 23875931aab012d4eb0a0613acd7208c, type: 3}
   timelineDrag: {fileID: 0}
   play: 0
+--- !u!114 &3119816970474622828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885431782990957617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3badba767b4ef44bfded3a5d70e3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  gamePlay: 0
+  moveInXAxis: 1
+  minX: -10
+  maxX: 10
+  minY: -5
+  maxY: 5
 --- !u!1 &7319590466342609400
 GameObject:
   m_ObjectHideFlags: 0

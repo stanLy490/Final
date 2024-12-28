@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+
 public class Drag_2D : MonoBehaviour
 {
     [SerializeField] private bool isSelected;
     private Vector2 initialMousePosition;
     private Vector2 initialPositionOffset;
+    
+    // 静态变量，用于控制所有实例的状态
+    public static bool isGamePlaying = false;
     
     public bool moveInXAxis = true;  // true: 只在X轴移动, false: 只在Y轴移动
     public float minX = -10f;        // X轴最小值
@@ -11,9 +15,18 @@ public class Drag_2D : MonoBehaviour
     public float minY = -5f;         // Y轴最小值
     public float maxY = 5f;          // Y轴最大值
 
+    private void Start()
+    {
+        // 在启动时注册到BlockManager
+        if (BlockManager.instance != null)
+        {
+            BlockManager.instance.RegisterDragObject(this);
+        }
+    }
+
     private void Update()
     {
-        if (isSelected)
+        if (isSelected && !isGamePlaying)
         {
             Vector3 screenPos = Input.mousePosition;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
@@ -60,12 +73,18 @@ public class Drag_2D : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        transform.localScale += Vector3.one * 1f;
+        if(!isGamePlaying)
+        {
+            transform.localScale += Vector3.one * 1f;
+        }
     }
 
     private void OnMouseExit()
     {
-        transform.localScale -= Vector3.one * 1f;
+        if(!isGamePlaying)
+        {
+            transform.localScale -= Vector3.one * 1f;
+        }
     }
 
     // 可选：在Scene视图中显示移动范围
@@ -89,4 +108,24 @@ public class Drag_2D : MonoBehaviour
             );
         }
     }
+
+    /// <summary>
+    /// 开始游戏，禁用所有拖拽功能
+    /// 此方法现在由BlockManager调用，不再需要直接绑定到按钮
+    /// </summary>
+    // public void GamePlay()
+    // {
+    //     isGamePlaying = true;
+    //     Debug.Log($"游戏开始，所有拖拽功能已禁用");
+    // }
+
+    // /// <summary>
+    // /// 重置游戏，启用所有拖拽功能
+    // /// 此方法现在由BlockManager调用，不再需要直接绑定到按钮
+    // /// </summary>
+    // public void ResetGamePlay()
+    // {
+    //     isGamePlaying = false;
+    //     Debug.Log($"游戏重置，所有拖拽功能已启用");
+    // }
 }

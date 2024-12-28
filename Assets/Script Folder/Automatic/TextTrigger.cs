@@ -8,8 +8,10 @@ public class TextTrigger : MyUI
     [SerializeField] private CanvasGroup colliderCanvasGroup2;
     [SerializeField] private CanvasGroup uiCanvasGroup;//检测到玩家触发后显示的UI
     [SerializeField] private CanvasGroup startTextCanvasGroup;//游戏开始就出现的UI
+    [SerializeField] private CanvasGroup secondTextCanvasGroup;//需要二次碰撞触发的UI‘
     public bool isStart = false;
     public bool isUi = false;
+    public bool secondHit = false;
 
     void Start()
     {
@@ -17,6 +19,7 @@ public class TextTrigger : MyUI
         colliderCanvasGroup2.alpha = 0;
         startTextCanvasGroup.alpha = 0;
         uiCanvasGroup.alpha = 0;
+        secondTextCanvasGroup.alpha = 0;
 
         if(isStart)//如果没有一开始就出现，那么下面方法不会被执行
         {
@@ -39,6 +42,12 @@ public class TextTrigger : MyUI
             FadeOut(colliderCanvasGroup,1,2);
             FadeIn(colliderCanvasGroup2,1);
             FadeOut(colliderCanvasGroup2,1,2);
+
+            if(secondHit)
+            {
+                FadeIn(secondTextCanvasGroup,1);
+            }
+            secondHit = true;
         }
     }
 
