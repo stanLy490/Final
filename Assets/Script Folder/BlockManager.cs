@@ -22,7 +22,7 @@ public class BlockManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 防止切换场景时销毁
+            // DontDestroyOnLoad(gameObject); // 防止切换场景时销毁
         }
         else
         {
