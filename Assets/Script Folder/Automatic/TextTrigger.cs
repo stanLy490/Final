@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TextTrigger : MyUI
 {
-    [SerializeField] private CanvasGroup colliderCanvasGroup;
+    [SerializeField] private CanvasGroup colliderCanvasGroup;//出现后过一会会消失
     [SerializeField] private CanvasGroup colliderCanvasGroup2;
     [SerializeField] private CanvasGroup uiCanvasGroup;//检测到玩家触发后显示的UI
     [SerializeField] private CanvasGroup startTextCanvasGroup;//游戏开始就出现的UI
-    [SerializeField] private CanvasGroup secondTextCanvasGroup;//需要二次碰撞触发的UI‘
+    [SerializeField] private CanvasGroup secondTextCanvasGroup;//需要二次碰撞触发的UI，永久出现
     public bool isStart = false;
     public bool isUi = false;
     public bool secondHit = false;

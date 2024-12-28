@@ -17,6 +17,8 @@ public class Drag_2D : MonoBehaviour
 
     private void Start()
     {
+        isGamePlaying = false;
+        Debug.Log($"isGamePlaying: {isGamePlaying}");
         // 在启动时注册到BlockManager
         if (BlockManager.instance != null)
         {

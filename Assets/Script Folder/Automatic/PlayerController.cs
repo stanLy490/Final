@@ -7,11 +7,11 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     // 角色移动速度
-    public float moveSpeed = 5f;
+    private float moveSpeed = 5f;
     // 跳跃高度
     public float jumpHeight = 15f;
     // 死亡时向上跳跃的力度
-    public float deathJumpForce = 5f;
+    private float deathJumpForce = 8f;
     // 刚体组件引用
     private Rigidbody2D rb;
     // 胶囊碰撞体组件引用
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator TeleportAfterDelay()//这是角色死亡后的重生复活点倒计时
     {
         // 等待0.5秒
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         
         // 停止所有移动
         rb.velocity = Vector2.zero;

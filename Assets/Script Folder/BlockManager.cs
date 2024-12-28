@@ -17,6 +17,7 @@ public class BlockManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+
         // 确保只有一个BlockManager实例
         if (instance == null)
         {

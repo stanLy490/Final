@@ -8,6 +8,7 @@ public class CameraEnd : MonoBehaviour
 {
     // 需要控制的虚拟相机，可在Inspector中指定
     public CinemachineVirtualCamera targetCamera;
+    private CameraControl cameraControl;
 
     private void Start()
     {
@@ -15,6 +16,14 @@ public class CameraEnd : MonoBehaviour
         if (targetCamera == null)
         {
             Debug.LogError("请在Inspector中指定要控制的虚拟相机！");
+            return;
+        }
+
+        // 获取CameraControl组件
+        cameraControl = targetCamera.GetComponent<CameraControl>();
+        if (cameraControl == null)
+        {
+            Debug.LogError("目标相机缺少CameraControl组件！");
         }
     }
 
@@ -25,11 +34,10 @@ public class CameraEnd : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 检查碰撞物体是否为玩家
-        if (collision.gameObject.CompareTag("Player") && targetCamera != null)
+        if (collision.gameObject.CompareTag("Player") && targetCamera != null && cameraControl != null)
         {
-            // 清空Follow和LookAt目标
-            targetCamera.Follow = null;
-            targetCamera.LookAt = null;
+            // 通过CameraControl脚本停止相机跟随
+            cameraControl.StopFollowing();
         }
     }
 }
