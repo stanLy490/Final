@@ -71,7 +71,7 @@ public class CameraControl : MonoBehaviour
     /// <summary>
     /// 停止相机跟随
     /// </summary>
-    public void StopFollowing()
+    public void StopFollowing()//这个功能和CameraEnd相互关联
     {
         shouldFollow = false;
         virtualCamera.Follow = null;

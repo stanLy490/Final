@@ -35,7 +35,7 @@ public class Block : MonoBehaviour
         // newKeyObject.transform.localPosition = GameObject.Find("Time Marker").transform.localPosition;
         Transform timeMarkerTransform = GameObject.Find("Time Marker").transform;
         // 设置newKeyObject的位置，使其在Time Marker的x和z轴相同位置，y轴下方一点
-        newKeyObject.transform.localPosition = new Vector3(timeMarkerTransform.localPosition.x, timeMarkerTransform.localPosition.y - 1.0f, timeMarkerTransform.localPosition.z);
+        newKeyObject.transform.localPosition = new Vector3(timeMarkerTransform.localPosition.x, timeMarkerTransform.localPosition.y - 1.2f, timeMarkerTransform.localPosition.z);
 
 
         Key KeyComponent;
