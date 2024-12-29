@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     // 胶囊碰撞体组件引用
     private CapsuleCollider2D capsuleCollider;
+    // 跳跃音效组件引用
+    [SerializeField] private AudioSource audioSourceJump;
+    // 死亡音效组件引用
+    [SerializeField] private AudioSource audioSourceDeath;
     // 控制角色是否向右移动
     public bool isMoveRight = false;
     // 控制角色是否被冻结（不能移动）
@@ -157,6 +161,12 @@ public class PlayerController : MonoBehaviour
     {
         isAlive = false;
         
+        // 播放死亡音效
+        if (audioSourceDeath != null && audioSourceDeath.clip != null)
+        {
+            audioSourceDeath.Play();
+        }
+
         // 立即旋转90度
         transform.Rotate(0, 0, 90f);
         
@@ -206,6 +216,11 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+        // 播放跳跃音效
+        if (audioSourceJump != null && audioSourceJump.clip != null)
+        {
+            audioSourceJump.Play();
+        }
     }
 
     /// <summary>
