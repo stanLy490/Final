@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.2953539, g: 1, b: 0, a: 0.0627451}
+  m_Color: {r: 0.2953539, g: 1, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -133,5 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff6f0fe8a6a7948adfa08d727b3a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textCanvasGroup: {fileID: 0}
+  colliderCanvasGroup: {fileID: 0}
+  colliderCanvasGroup2: {fileID: 0}
+  uiCanvasGroup: {fileID: 0}
   startTextCanvasGroup: {fileID: 0}
+  secondTextCanvasGroup: {fileID: 0}
+  isStart: 0
+  isUi: 0
+  secondHit: 0
