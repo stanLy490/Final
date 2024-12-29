@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // 检测回车键输入
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            isMoveRight = true;
-            ResetCharacterPos();
-            Debug.Log($"Key 'Enter' detected");
-        }
+        // if (Input.GetKeyDown(KeyCode.Return))
+        // {
+        //     isMoveRight = true;
+        //     ResetCharacterPos();
+        //     Debug.Log($"Key 'Enter' detected");
+        // }
         // 控制角色移动
         MoveRight();
     }

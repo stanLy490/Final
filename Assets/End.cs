@@ -7,6 +7,7 @@ public class End : MonoBehaviour
 
     public GameObject SFX_1;
     public GameObject SFX_2;
+    public GameObject SFX_3;
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,6 +15,7 @@ public class End : MonoBehaviour
         {
             SFX_1.SetActive(true);
             SFX_2.SetActive(true);
+            SFX_3.SetActive(true);
         }
     }
 }
