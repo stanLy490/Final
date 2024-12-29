@@ -73,21 +73,21 @@ public class Drag_2D : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
-    {
-        if(!isGamePlaying)
-        {
-            transform.localScale += Vector3.one * 1f;
-        }
-    }
+    // private void OnMouseEnter()
+    // {
+    //     if(!isGamePlaying)
+    //     {
+    //         transform.localScale += Vector3.one * 1f;
+    //     }
+    // }
 
-    private void OnMouseExit()
-    {
-        if(!isGamePlaying)
-        {
-            transform.localScale -= Vector3.one * 1f;
-        }
-    }
+    // private void OnMouseExit()
+    // {
+    //     if(!isGamePlaying)
+    //     {
+    //         transform.localScale -= Vector3.one * 1f;
+    //     }
+    // }
 
     // 可选：在Scene视图中显示移动范围
     private void OnDrawGizmos()
