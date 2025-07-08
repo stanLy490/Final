@@ -2036,7 +2036,7 @@ PrefabInstance:
     - target: {fileID: 5511631181829159765, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
       propertyPath: colliderCanvasGroup
       value: 
-      objectReference: {fileID: 1746259052}
+      objectReference: {fileID: 1181680010}
     - target: {fileID: 5511631181829159765, guid: 3eccd20623aabbf42ada5ba5c4d3c628, type: 3}
       propertyPath: colliderCanvasGroup2
       value: 
@@ -2353,6 +2353,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &632398140 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5524739990088414382, guid: 0ee232a238557e44b9d4747534996126, type: 3}
+  m_PrefabInstance: {fileID: 3606750304419898782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &635259190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4564,7 +4569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135.3601, y: -14.08}
+  m_AnchoredPosition: {x: -149.35, y: -21.5}
   m_SizeDelta: {x: 11.9954, y: 1.5789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181680007
@@ -4587,7 +4592,35 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '4.Drag the block again
+  m_text: '"Cross" records the position of the block
+
+    Just like TIMELINE!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    4.Drag
+    the block again
 
     5.DRAG the icon "K" too
 
@@ -4659,7 +4692,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -11.099596, w: 0}
+  m_margin: {x: 0, y: 0, z: -21.034664, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4965,6 +4998,130 @@ Transform:
   - {fileID: 188386221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1285451447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285451448}
+  - component: {fileID: 1285451450}
+  - component: {fileID: 1285451449}
+  - component: {fileID: 1285451451}
+  - component: {fileID: 1285451452}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1285451448
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285451447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.652941, y: 5.652941, z: 5.652941}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 632398140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -639, y: -413}
+  m_SizeDelta: {x: 192, y: 108}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1285451449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285451447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 779ecd13b2dd77047815dcef3eb23981, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1285451450
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285451447}
+  m_CullTransparentMesh: 1
+--- !u!328 &1285451451
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285451447}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 02c46ed13c7d62a4bafd3c2c673b65a0, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 779ecd13b2dd77047815dcef3eb23981, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &1285451452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285451447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e59dbb1132e74489d75405e251578d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 1000
+  moveDuration: 1
 --- !u!1001 &1286016446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5244,7 +5401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149.67, y: -14.1}
+  m_AnchoredPosition: {x: -149.64, y: -14.72}
   m_SizeDelta: {x: 11.9954, y: 1.5789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1337393737
@@ -5279,9 +5436,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1.DRAG the block\n2.DRAG icon \"K\" in timeline\n3.Press \"K\"\n\n\n\n\n*Hover
-    your cursor on the \u201CCross\u201D icon and press \"Delete\" to get rid of
-    it"
+  m_text: "1.DRAG the block\n2.DRAG icon\n3.Press \"K\"\n\n\n*Hover your cursor on
+    the \u201CCross\u201D icon and press \"Delete\" "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5428,7 +5584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pay attention to the movement of block
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9224,6 +9380,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8458542800959960266, guid: 0ee232a238557e44b9d4747534996126, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1132910517}
+    - targetCorrespondingSourceObject: {fileID: 5524739990088414382, guid: 0ee232a238557e44b9d4747534996126, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1285451448}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4820799032694083262, guid: 0ee232a238557e44b9d4747534996126, type: 3}
       insertIndex: -1
